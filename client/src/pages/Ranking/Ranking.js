@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
+import Schools from '../../components/Schools/Schools';
 
 const Ranking = () => {
     return (
@@ -20,6 +21,7 @@ const Ranking = () => {
                 rightChild={<a href='/promotion'>홍보자료</a>}
             />
             <h1>학교 랭킹</h1>
+            <Schools />
         </div>
     );
 };

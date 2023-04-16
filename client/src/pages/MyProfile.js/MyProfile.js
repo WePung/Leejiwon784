@@ -16,7 +16,6 @@ const MyProfile = () => {
                 }
             />
             <h1>마이 페이지</h1>
-            {userInfo[0].userName}
         </div>
     );
 };

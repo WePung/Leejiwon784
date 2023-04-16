@@ -1,6 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+    const navigator = useNavigate();
+
+    const onBack = () =>{
+        navigator(-1);
+    }
     return (
         <div className='signUpPage'>
             <div className='userInfoInputWrapper'>
@@ -40,10 +46,13 @@ const SignUp = () => {
             </div>
             <div className='signUpBtnWrapper'>
                     <button>회원가입</button>
-                    <button>뒤로가기</button>
+                    <button
+                        onClick={onBack}
+                    >뒤로가기
+                    </button>
                 </div>
         </div>
     );
 };
 
-export default SignUp;<h1>회원가입 화면</h1>
+export default SignUp;

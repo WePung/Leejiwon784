@@ -44,7 +44,8 @@ const schoolInfo = [{
                 oneDepartment: "Video Content",
                 twoDepartment:"Video Design",
                 threeDepartment:"Accounting"
-            }
+            },
+        youtubeLink:"https://www.youtube.com/embed/LhQjt5gZ5tY"
         },
         {
         schoolUniqueId: 2,
@@ -54,7 +55,8 @@ const schoolInfo = [{
                 twoDepartment:"Department of Automotive",
                 threeDepartment:"Department of Automotive Design",
                 fourDepartment:"Department of Automotive IT"
-            }
+            },
+        youtubeLink:"https://www.youtube.com/embed/uRnDNKIxbeI"
         }
     ];
 
@@ -74,30 +76,30 @@ app.post('/api/schoolInfo', (req, res)=>{
 });
 
 // 학교 리뷰
-const schooleReview = [{
-    schoolUniqueId: 1,
-    schoolName : "서울영상고등학고",
-    schoolDepartment :{
-        score: "content",
-        twoDepartment:"design",
-        threeDepartment:"accounting"
-    }
-}];
+// const schooleReview = [{
+//     schoolUniqueId: 1,
+//     schoolName : "서울영상고등학고",
+//     schoolDepartment :{
+//         score: "content",
+//         twoDepartment:"design",
+//         threeDepartment:"accounting"
+//     }
+// }];
 
-app.get('/api/schoolReview', (req, res)=>{
-    res.json(schooleReview);
-});
+// app.get('/api/schoolReview', (req, res)=>{
+//     res.json(schooleReview);
+// });
 
-app.post('/api/schoolReview', (req, res)=>{
-    const {schoolUniqueId, schoolName, schoolDepartment} = req.body;
-    console.log("req.body = "+ req.body);
-    todoList.push({
-        schoolUniqueId,
-        schoolName,
-        schoolDepartment
-    });
-    return res.send('success');
-});
+// app.post('/api/schoolReview', (req, res)=>{
+//     const {schoolUniqueId, schoolName, schoolDepartment} = req.body;
+//     console.log("req.body = "+ req.body);
+//     todoList.push({
+//         schoolUniqueId,
+//         schoolName,
+//         schoolDepartment
+//     });
+//     return res.send('success');
+// });
 
 
 app.listen(4000, ()=>{

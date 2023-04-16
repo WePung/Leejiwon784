@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
+import Promotions from '../../components/Promotions/Promotions';
 
 const Promotion = () => {
     return (
@@ -20,6 +21,7 @@ const Promotion = () => {
                 rightChild={<a href='/promotion'>홍보자료</a>}
             />
             <h1>홍보 자료</h1>
+            <Promotions />
         </div>
     );
 };

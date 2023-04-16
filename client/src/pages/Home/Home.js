@@ -29,7 +29,6 @@ const Home = () => {
             />
             <Banner />
             <FindDepartment />
-            {schoolInfo[0].schoolName}
         </div>
     );
 };
