@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from '../../components/Header/Header';
+import { UserDataContext } from '../../App';
 
 const MyProfile = () => {
+    const userInfo = useContext(UserDataContext);
     return (
         <div className='MyProfilePage'>
             <Header 
@@ -14,6 +16,7 @@ const MyProfile = () => {
                 }
             />
             <h1>마이 페이지</h1>
+            {userInfo[0].userName}
         </div>
     );
 };

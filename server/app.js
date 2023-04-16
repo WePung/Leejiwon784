@@ -24,7 +24,7 @@ app.get('/api/userInfo', (req, res)=>{
 app.post('/api/userInfo', (req, res)=>{
     const {userId,userName, password, email, gender} = req.body;
     console.log("req.body = "+ req.body);
-    todoList.push({
+    userInfo.push({
         id : id++,
         userId,
         userName,
@@ -36,54 +36,65 @@ app.post('/api/userInfo', (req, res)=>{
 });
 
 // 학교 정보
-let schooleId
-const schooleInfo = [{
-    schooleUniqueId: 1,
-    schooleName : "서울영상고등학고",
-    schooleDepartment :{
-        oneDepartment: "content",
-        twoDepartment:"design",
-        threeDepartment:"accounting"
-    }
-}];
+let schoolUniqueId
+const schoolInfo = [{
+        schoolUniqueId: 1,
+        schoolName : "서울영상고등학교",
+            schoolDepartment :{
+                oneDepartment: "Video Content",
+                twoDepartment:"Video Design",
+                threeDepartment:"Accounting"
+            }
+        },
+        {
+        schoolUniqueId: 2,
+        schoolName : "경기자동차과학고등학교",
+            schoolDepartment :{
+                oneDepartment: "Department of Future Automotive",
+                twoDepartment:"Department of Automotive",
+                threeDepartment:"Department of Automotive Design",
+                fourDepartment:"Department of Automotive IT"
+            }
+        }
+    ];
 
-app.get('/api/schooleInfo', (req, res)=>{
-    res.json(schooleInfo);
+app.get('/api/schoolInfo', (req, res)=>{
+    res.json(schoolInfo);
 });
 
-app.post('/api/schooleInfo', (req, res)=>{
-    const {schooleUniqueId, schooleName, schooleDepartment} = req.body;
+app.post('/api/schoolInfo', (req, res)=>{
+    const {schoolUniqueId, schoolName, schoolDepartment} = req.body;
     console.log("req.body = "+ req.body);
-    todoList.push({
-        schooleUniqueId,
-        schooleName,
-        schooleDepartment
+    schoolInfo.push({
+        schoolUniqueId,
+        schoolName,
+        schoolDepartment
     });
     return res.send('success');
 });
 
 // 학교 리뷰
 const schooleReview = [{
-    schooleUniqueId: 1,
-    schooleName : "서울영상고등학고",
-    schooleDepartment :{
+    schoolUniqueId: 1,
+    schoolName : "서울영상고등학고",
+    schoolDepartment :{
         score: "content",
         twoDepartment:"design",
         threeDepartment:"accounting"
     }
 }];
 
-app.get('/api/schooleInfo', (req, res)=>{
-    res.json(schooleInfo);
+app.get('/api/schoolReview', (req, res)=>{
+    res.json(schooleReview);
 });
 
-app.post('/api/schooleInfo', (req, res)=>{
-    const {schooleUniqueId, schooleName, schooleDepartment} = req.body;
+app.post('/api/schoolReview', (req, res)=>{
+    const {schoolUniqueId, schoolName, schoolDepartment} = req.body;
     console.log("req.body = "+ req.body);
     todoList.push({
-        schooleUniqueId,
-        schooleName,
-        schooleDepartment
+        schoolUniqueId,
+        schoolName,
+        schoolDepartment
     });
     return res.send('success');
 });

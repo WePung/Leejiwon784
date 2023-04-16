@@ -1,13 +1,13 @@
 import React from 'react';
 import style from './Menu.module.css';
 
-const Menu = () => {
+const Menu = ({leftChild, centerChild, rightChild}) => {
     return (
         <div className={style.Menu}>
             <ul>
-                <li><a href="/ranking">학교 랭킹</a></li>
-                <li><a href="/schoollist">학교</a></li>
-                <li><a href="/promotion">홍보 자료</a></li>
+            <div className="menuBtnLeft">{leftChild}</div>
+               <div className="menuBtnCenter">{centerChild}</div>
+               <div className="menuBtnRight">{rightChild}</div>
             </ul>
         </div>
     );
