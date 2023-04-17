@@ -45,7 +45,8 @@ const schoolInfo = [{
                 twoDepartment:"Video Design",
                 threeDepartment:"Accounting"
             },
-        youtubeLink:"https://www.youtube.com/embed/LhQjt5gZ5tY"
+        youtubeLink:"https://www.youtube.com/embed/LhQjt5gZ5tY",
+        image:"https://placeimg.com/250/166/any"
         },
         {
         schoolUniqueId: 2,
@@ -56,7 +57,8 @@ const schoolInfo = [{
                 threeDepartment:"Department of Automotive Design",
                 fourDepartment:"Department of Automotive IT"
             },
-        youtubeLink:"https://www.youtube.com/embed/uRnDNKIxbeI"
+        youtubeLink:"https://www.youtube.com/embed/uRnDNKIxbeI",
+        image:"https://placeimg.com/250/166/any"
         }
     ];
 

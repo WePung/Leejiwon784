@@ -10,6 +10,7 @@ const Schools = () => {
                         key = {item.schoolUniqueId}
                     >
                         {item.schoolName}
+                        <img src={`${item.image}`}/>
                     </div>
             ))}
         </div>

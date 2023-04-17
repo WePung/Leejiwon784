@@ -8,4 +8,4 @@ const Banner = () => {
     );
 };
 
-export default Banner;<h1>이미지들</h1>
+export default Banner;
