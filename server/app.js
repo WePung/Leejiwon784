@@ -40,23 +40,21 @@ let schoolUniqueId
 const schoolInfo = [{
         schoolUniqueId: 1,
         schoolName : "서울영상고등학교",
-            schoolDepartment :{
-                oneDepartment: "Video Content",
-                twoDepartment:"Video Design",
-                threeDepartment:"Accounting"
-            },
+            schoolDepartment : [
+                "Video Content",
+                "Video Design",
+                "Accounting"],
         youtubeLink:"https://www.youtube.com/embed/LhQjt5gZ5tY",
         image:"https://placeimg.com/250/166/any"
         },
         {
         schoolUniqueId: 2,
         schoolName : "경기자동차과학고등학교",
-            schoolDepartment :{
-                oneDepartment: "Department of Future Automotive",
-                twoDepartment:"Department of Automotive",
-                threeDepartment:"Department of Automotive Design",
-                fourDepartment:"Department of Automotive IT"
-            },
+            schoolDepartment :[
+                "Department of Future Automotive",
+                "Department of Automotive",
+                "Department of Automotive Design",
+                "Department of Automotive IT"],
         youtubeLink:"https://www.youtube.com/embed/uRnDNKIxbeI",
         image:"https://placeimg.com/250/166/any"
         }
