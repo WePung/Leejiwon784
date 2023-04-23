@@ -1,16 +1,13 @@
 import React, { useState, useContext } from 'react';
-import{SchoolInfoContext} from '../../App';
-import { useNavigate } from 'react-router-dom';
+import{SchoolInfoContext} from '../../App'
 
 import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
 import SchoolList from '../../components/SchoolList/SchoolList';
 
-const Ranking = () => {
-
+const Schools = () => {
     const schoolInfo = useContext(SchoolInfoContext);
     const [filterValue, setFilterValue] = useState("");
-    const navigate = useNavigate();
 
     const onFilterChange = (e) =>{
         setFilterValue(e.target.value)
@@ -32,19 +29,20 @@ const Ranking = () => {
                 centerChild={<a href='/ranking'>학교 랭킹</a>}
                 rightChild={<a href='/promotion'>홍보자료</a>}
             />
-            <h1>학교 랭킹</h1>
-            <select
-                onChange={onFilterChange}
-            >
-                <option value="Accounting">회계</option>
-                <option value="Automotive">자동차</option>
-                <option value="Design">디자인</option>
-            </select>
-            <SchoolList
+            <h1>학교</h1>
+            <div className='formWrapper'>
+                <input
+                    type='text'
+                    name = "searchText"
+                    onChange={onFilterChange}
+                />
+                <button>찾기</button>
+                <SchoolList
                 filterValue={filterValue}
             />
+            </div>
         </div>
     );
 };
 
-export default Ranking;
+export default Schools;

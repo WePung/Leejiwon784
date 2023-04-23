@@ -1,13 +1,11 @@
 import React, { useContext } from 'react';
-import Header from '../Header/Header';
-import Menu from '../Menu/Menu';
+import { SchoolInfoContext } from '../../App';
 
 const SchoolDetail = () => {
     const schoolInfo = useContext(SchoolInfoContext);
     return (
         <div className='SchoolDetail'>
-            <Header />
-            <Menu />
+            <h1>학교 상세 페이지</h1>
         </div>
     );
 };

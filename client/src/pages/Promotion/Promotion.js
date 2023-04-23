@@ -16,7 +16,7 @@ const Promotion = () => {
                 }
             />
             <Menu
-                leftChild={<a href='/schoollist'>학교</a>}
+                leftChild={<a href='/schools'>학교</a>}
                 centerChild={<a href='/ranking'>학교 랭킹</a>}
                 rightChild={<a href='/promotion'>홍보자료</a>}
             />

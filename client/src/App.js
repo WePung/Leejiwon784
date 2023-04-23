@@ -7,8 +7,9 @@ import Login from "./pages/Login/Login";
 import MyProfile from "./pages/MyProfile.js/MyProfile";
 import SignUp from "./pages/SignUp/SignUp";
 import Ranking from "./pages/Ranking/Ranking";
-import SchoolList from "./pages/SchoolList/SchoolList";
 import Promotion from "./pages/Promotion/Promotion";
+import SchoolDetail from "./components/SchoolDetail/SchoolDetail";
+import Schools from "./pages/Schools/Schools";
 
 export const UserDataContext = React.createContext(); //User 데이터 context
 export const SchoolInfoContext = React.createContext(); //School 데이터 context
@@ -68,8 +69,9 @@ function App() {
               <Route path="/myprofile" element={<MyProfile />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/ranking" element={<Ranking />} />
-              <Route path="/schoollist" element={<SchoolList />} />
+              <Route path="/schools" element={<Schools />} />
               <Route path="/promotion" element={<Promotion />} />
+              <Route path="/schooldetail/:id" element={<SchoolDetail />} />
             </Routes>
           </BrowserRouter>
         </SchoolInfoContext.Provider>
