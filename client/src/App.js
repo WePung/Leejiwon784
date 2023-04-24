@@ -8,8 +8,15 @@ import MyProfile from "./pages/MyProfile.js/MyProfile";
 import SignUp from "./pages/SignUp/SignUp";
 import Ranking from "./pages/Ranking/Ranking";
 import Promotion from "./pages/Promotion/Promotion";
-import SchoolDetail from "./components/SchoolDetail/SchoolDetail";
+import SchoolDetail from "./pages/SchoolDetail/SchoolDetail";
 import Schools from "./pages/Schools/Schools";
+
+const reducer = (state, action) => {
+  let newState = [];
+
+  return newState;
+}
+
 
 export const UserDataContext = React.createContext(); //User 데이터 context
 export const SchoolInfoContext = React.createContext(); //School 데이터 context
@@ -18,9 +25,6 @@ function App() {
 
   const [userInfo, setuserInfo] = useState([]);
   const [schoolInfo ,setSchoolInfo] = useState([]);
-  const [isLogin, setIsLogin] = useState(false);
-  const[inputText, setInputText] = useState("");
-  const[isDone, setIsDone] = useState(false);
 
   const fetchUserData = async() => {
     const res = await axios.get('http://localhost:4000/api/userInfo')

@@ -49,10 +49,9 @@ const FindDepartment = () => {
                 <button name = "디자인" value="Design" onClick={onFilterChange}>디자인</button>
                 </div>
             </div>
-            {/* {filtedSchoolList} */}
             <SchoolList
                 filterValue={filterValue}
-            />  
+            />
         </div>
     );
 };
