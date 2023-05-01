@@ -1,6 +1,12 @@
+
+// 모듈
 const express = require('express')
 const app = express()
+const bodyParser = require("body-parser");
 const cors = require('cors')
+
+// 라우팅
+const home = require("./routes/home")
 
 app.use(cors())
 app.use(express.json()) // json parsing을 위해서
@@ -14,8 +20,19 @@ const userInfo = [{
     userId:"admin",
     password:"admin1234",
     email:"admin@test.com",
-    gender:"male"
-}];
+    gender:"male",
+    age:24
+},
+{
+    id : 2,
+    userName:"test",
+    userId:"test",
+    password:"test1234",
+    email:"test@test.com",
+    gender:"female",
+    age:20
+}
+];
 
 app.get('/api/userInfo', (req, res)=>{
     res.json(userInfo);

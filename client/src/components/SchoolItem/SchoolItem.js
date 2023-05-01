@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 const SchoolItem = ({filterValue, schoolUniqueId, schoolName, schoolDepartment}) => {
     const navigate =useNavigate();
     const onGoDetail = () => {
-        navigate(`/schooldetail/${schoolUniqueId}`)
+        alert("안녕")
+        // navigate(`/schooldetail/${schoolUniqueId}`)
     }
 
     const filtedSchoolInfo = () =>{
@@ -21,7 +22,6 @@ const SchoolItem = ({filterValue, schoolUniqueId, schoolName, schoolDepartment})
                 )
         }
     }
-   
     return (
         <div className='SchoolItem' onClick={onGoDetail}>
             {filtedSchoolInfo()}    
