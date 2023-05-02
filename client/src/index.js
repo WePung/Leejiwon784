@@ -1,15 +1,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { applyMiddleware, compose, legacy_createStore as createStore } from 'redux';
+import { Provider } from 'react-redux';
+import logger from "redux-logger";
+import rootReducer from './action/reducers';
+import {composeWithDevTools} from "redux-devtools-extension";
+
 import App from './App';
-// import Main from "./main"
 import reportWebVitals from './reportWebVitals';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    {/* <Main /> */}
+
+const enhancer = process.env.NODE_ENV === "production"
+? compose(applyMiddleware())
+: composeWithDevTools(applyMiddleware(logger));
+
+const store = createStore(rootReducer, enhancer);
+
+// const root = ReactDOM.createRoot(document.getElementById('root'));
+// root.render(
+//   <React.StrictMode>
+//     <App />
+//   </React.StrictMode>
+// );
+ReactDOM.render(
+  <Provider store = {store}>
     <App />
-  </React.StrictMode>
+  </Provider>
+  ,document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function

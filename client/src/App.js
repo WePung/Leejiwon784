@@ -94,8 +94,8 @@ function App() {
   // 로그인
   async function LoginTest(e){
     e.preventDefault();
-    var _id = document.getElementById('id').value
-    var _pw = document.getElementById('pw').value
+    const _id = document.getElementById('id').value
+    const _pw = document.getElementById('pw').value
     if(!_id){
       alert("ID를 확인해주세요");
     }else if(!_pw){
@@ -118,17 +118,17 @@ function App() {
   // 회원가입
   const signUpTest = (e) =>{
     e.preventDefault();
-    var _id = document.getElementById('id').value
-    var _password = document.getElementById('password').value
-    var _passwordCheack = document.getElementById('passwordCheack').value
-    var _name = document.getElementById('userName').value
-    var _email = document.getElementById('email').value
-    var _gender = document.getElementById('gender').value
-    var _age = document.getElementById('age').value
+    const _id = document.getElementById('id').value
+    const _password = document.getElementById('password').value
+    const _passwordCheack = document.getElementById('passwordCheack').value
+    const _name = document.getElementById('userName').value
+    const _email = document.getElementById('email').value
+    const _gender = document.getElementById('gender').value
+    const _age = document.getElementById('age').value
     if(!_id ||  !_password || !_passwordCheack || !_name || !_email || !_gender || !_age){
       alert("내용을 기입해주세요");
     }else{
-      var action = {type:'SIGNUP', data:{id:nId, userName:_name, userId:_id,userPw:_password, email:_email, gender:_gender, age:_age}};
+      const action = {type:'SIGNUP', data:{id:nId, userName:_name, userId:_id,userPw:_password, email:_email, gender:_gender, age:_age}};
       store.dispatch(action);
       nId++;
     }
