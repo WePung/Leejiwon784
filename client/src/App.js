@@ -18,7 +18,7 @@ import Review from "./components/Review/Review";
 import Traffic from "./components/Traffic/Traffic";
 import Education from "./components/Education/Education";
 import QnA from "./components/QnA/QnA";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export const UserDataContext = React.createContext(); //User 데이터 context
 export const SchoolInfoContext = React.createContext(); //School 데이터 context
@@ -32,8 +32,6 @@ function App() {
   // 로그인시 필요
 
   const dispatch = useDispatch();
-
-  const {isLogin} = useSelector(state=> state.login)
 
   const fetchUserData = async() => {
     const res = await axios.get('http://localhost:4000/api/userInfo')
@@ -60,9 +58,7 @@ function App() {
       resData.map((it)=>{
         if(it.userId === _id){
           if(it.password === _pw){
-            // var action = {type:'LOGIN', userId:_id, userPw:_pw, id:it.id, userName:it.userName};
-            // setIsLogin(true);
-            // store.dispatch(action);
+            var action = {type:'LOGIN', data:{userId:_id, userPw:_pw, id:it.id, userName:it.userName}};
             dispatch(logIn());
           }
         }
@@ -105,7 +101,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login loginFunc={LoginTest} isLogin = {isLogin}/>} />
+              <Route path="/login" element={<Login loginFunc={LoginTest} />} />
               <Route path="/myprofile" element={<MyProfile />} />
               <Route path="/signup" element={<SignUp signUpTest = {signUpTest}/>} />
               <Route path="/ranking" element={<Ranking />} />

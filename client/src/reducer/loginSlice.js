@@ -1,25 +1,22 @@
 export const LOGIN = "USER/LOGIN";
 export const LOGOUT = "USER/LOGOUT";
 
-export const logIn = (isLogin) => ({type:LOGIN, isLogin});
-export const logOut = (isLogin) => ({type:LOGOUT, isLogin});
+export const logIn = () => ({type:LOGIN});
+export const logOut = () => ({type:LOGOUT});
 
-const isLoginState = {
-  isLogin:false
-};
+const initState = {
+  test:"test"
+}
 
-
-const login = (state = isLoginState, action) => {
+const loginSclice = (state = initState, action) => {
   switch (action.type){
     case LOGIN:
       return{
-        ...state,
-        isLogin: true
+        state
       }
     case LOGOUT:
       return{
-        ...state,
-        isLogin: false
+        state
       };
     
     default:
@@ -27,4 +24,4 @@ const login = (state = isLoginState, action) => {
   }
 }
 
-export default login;
+export default loginSclice;
