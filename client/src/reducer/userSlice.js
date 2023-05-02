@@ -1,32 +1,25 @@
-import { request } from "../utils/axios";
-import { SIGNUPUSER } from "../actions/types";
-
-export const LOGIN = "USER/LOGIN";
-export const LOGOUT = "USER/LOGOUT";
-export const SINGUP = "USER/SIGNUP";
-
-export const logIn = () => ({type:LOGIN});
-export const logOut = () => ({type:LOGOUT});
-export const singUp = () => ({type:SINGUP});
+import { SIGNUPUSER, LOGIN, LOGOUT } from "../actions/types";
 
 const initState = {
-  test:"test"
+  id: null,
+  userId: null,
+  password: null,
+  userName: null,
+  email: null,
+  gender: null,
+  age : null
 }
 
 const userSlice = (state = initState, action) => {
   switch (action.type){
     case LOGIN:
-      console.log(action.userId)
+      console.log(state)
       return{
-        state
+        ...state,
+        state: action.payload,
       }
       
     case LOGOUT:
-      return{
-        state
-      };
-
-    case SINGUP:
       return{
         state
       };

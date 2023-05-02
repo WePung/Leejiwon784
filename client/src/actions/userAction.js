@@ -1,4 +1,4 @@
-import { SIGNUPUSER } from "./types";
+import { SIGNUPUSER, LOGIN, LOGOUT} from "./types";
 import { request } from "../utils/axios";
 
 const userUrl = "/api/userInfo";
@@ -12,6 +12,17 @@ export function signUpUser(dataToSubmit) {
   };
 }
 
-export function logInUser(dataToSubmit) {
-  const data = request("POST", userUrl)
+export function logIn(dataToLogin){
+  const data = request("POST", userUrl + "/login", dataToLogin);
+  return{
+    type: LOGIN,
+    payload: data,
+  }
+}
+
+export function logOut(){
+    return{
+        type: LOGOUT,
+        
+    }
 }

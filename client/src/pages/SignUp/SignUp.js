@@ -49,8 +49,6 @@ const SignUp = (props) => {
     const onBack = () =>{
         navigator(-1);
     }
-
-    
   // 회원가입
   const signUpTest = (e) =>{
     e.preventDefault();
@@ -66,7 +64,7 @@ const SignUp = (props) => {
         if(pw === pwCheck){
             console.log(body)
             dispatch(signUpUser(body))
-            // navigator("/login");
+            navigator("/login");
         }else{
             alert("비밀번호가 일치하지 않습니다.");
         }

@@ -15,9 +15,9 @@ app.use(express.json()) // json parsing을 위해서
 app.use(express.urlencoded({extended:true})) // parsing을 위해서
 
 // 회원정보
-let id = 3;
+let id = 2;
 const userInfo = [{
-    id : 1,
+    id : 0,
     userName:"admin",
     userId:"admin",
     password:"admin1234",
@@ -26,7 +26,7 @@ const userInfo = [{
     age:24
 },
 {
-    id : 2,
+    id : 1,
     userName:"test",
     userId:"test",
     password:"test1234",
@@ -36,11 +36,12 @@ const userInfo = [{
 }
 ];
 
+// 회원정보 GET
 app.get('/api/userInfo', (req, res)=>{
     res.json(userInfo);
 });
 
-// 회원가입 포스트
+// 회원가입 POST
 app.post('/api/userInfo/signUp', (req, res)=>{
     const {userId,userName, password, email, gender, age} = req.body;
     console.log("req.body = "+ req.body);
@@ -60,20 +61,28 @@ app.post('/api/userInfo/signUp', (req, res)=>{
 }
 });
 
-// 로그인 포스트
+// 로그인 POST
 app.post('/api/userInfo/login', (req, res)=>{
-    const {userId,userName, password, email, gender, age} = req.body;
-    console.log("req.body = "+ req.body);
-
-    function findUserId(element){
-        if(element.userId === req.body){
-            return true
+    const userId = req.body.userId;
+    const password = req.body.password
+    function findUserId(userInfo){
+        if(userInfo.userId === userId){
+            return true;
         }
     }
+    const filtedUserId = userInfo.find(findUserId);
 
-    const id = arr.find(findUserId)
-    res.json(id);
-    return res.send('success');
+        if(filtedUserId.userId === userId){
+            if(filtedUserId.password === password){
+                console.log(userInfo[filtedUserId.id]);
+                return res.json(userInfo[filtedUserId.id])
+            }else{
+                return res.send("password invail")
+            }
+        }else{
+            return res.send("password invail")
+        }
+    
 });
 
 // 학교 정보
@@ -101,9 +110,11 @@ const schoolInfo = [{
         }
     ];
 
+// 학교정보 GET
 app.get('/api/schoolInfo', (req, res)=>{
     res.json(schoolInfo);
 });
+
 
 app.post('/api/schoolInfo', (req, res)=>{
     const {schoolUniqueId, schoolName, schoolDepartment} = req.body;
@@ -115,33 +126,6 @@ app.post('/api/schoolInfo', (req, res)=>{
     });
     return res.send('success');
 });
-
-// 학교 리뷰
-// const schooleReview = [{
-//     schoolUniqueId: 1,
-//     schoolName : "서울영상고등학고",
-//     schoolDepartment :{
-//         score: "content",
-//         twoDepartment:"design",
-//         threeDepartment:"accounting"
-//     }
-// }];
-
-// app.get('/api/schoolReview', (req, res)=>{
-//     res.json(schooleReview);
-// });
-
-// app.post('/api/schoolReview', (req, res)=>{
-//     const {schoolUniqueId, schoolName, schoolDepartment} = req.body;
-//     console.log("req.body = "+ req.body);
-//     todoList.push({
-//         schoolUniqueId,
-//         schoolName,
-//         schoolDepartment
-//     });
-//     return res.send('success');
-// });
-
 
 app.listen(4000, ()=>{
     console.log("server start")
