@@ -4,7 +4,6 @@ import './App.css';
 import Home from "./pages/Home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { legacy_createStore as createStore} from 'redux';
-import {logIn} from "./reducer/loginSlice";
 
 import Login from "./pages/Login/Login";
 import MyProfile from "./pages/MyProfile.js/MyProfile";
@@ -18,7 +17,7 @@ import Review from "./components/Review/Review";
 import Traffic from "./components/Traffic/Traffic";
 import Education from "./components/Education/Education";
 import QnA from "./components/QnA/QnA";
-import { useDispatch } from "react-redux";
+
 
 export const UserDataContext = React.createContext(); //User 데이터 context
 export const SchoolInfoContext = React.createContext(); //School 데이터 context
@@ -31,8 +30,6 @@ function App() {
   var nId = 3;
   // 로그인시 필요
 
-  const dispatch = useDispatch();
-
   const fetchUserData = async() => {
     const res = await axios.get('http://localhost:4000/api/userInfo')
     setuserInfo(res.data);
@@ -41,48 +38,6 @@ function App() {
   const fetchSchooleInfo = async() => {
     const res = await axios.get('http://localhost:4000/api/schoolInfo')
     setSchoolInfo(res.data);
-  }
-
-  // 로그인
-  async function LoginTest(e){
-    e.preventDefault();
-    const _id = document.getElementById('id').value
-    const _pw = document.getElementById('pw').value
-    if(!_id){
-      alert("ID를 확인해주세요");
-    }else if(!_pw){
-      alert("PW를 확인해주세요");
-    }else{
-      const res = await axios.get('http://localhost:4000/api/userInfo')
-      const resData = res.data;
-      resData.map((it)=>{
-        if(it.userId === _id){
-          if(it.password === _pw){
-            var action = {type:'LOGIN', data:{userId:_id, userPw:_pw, id:it.id, userName:it.userName}};
-            dispatch(logIn());
-          }
-        }
-      })
-    }
-  }
-
-  // 회원가입
-  const signUpTest = (e) =>{
-    e.preventDefault();
-    const _id = document.getElementById('id').value
-    const _password = document.getElementById('password').value
-    const _passwordCheack = document.getElementById('passwordCheack').value
-    const _name = document.getElementById('userName').value
-    const _email = document.getElementById('email').value
-    const _gender = document.getElementById('gender').value
-    const _age = document.getElementById('age').value
-    if(!_id ||  !_password || !_passwordCheack || !_name || !_email || !_gender || !_age){
-      alert("내용을 기입해주세요");
-    }else{
-      // const action = {type:'SIGNUP', data:{id:nId, userName:_name, userId:_id,userPw:_password, email:_email, gender:_gender, age:_age}};
-      // store.dispatch(action);
-      // nId++;
-    }
   }
 
   const logOuttest = (e) =>{
@@ -101,9 +56,9 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login loginFunc={LoginTest} />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/myprofile" element={<MyProfile />} />
-              <Route path="/signup" element={<SignUp signUpTest = {signUpTest}/>} />
+              <Route path="/signup" element={<SignUp />} />
               <Route path="/ranking" element={<Ranking />} />
               <Route path="/schools" element={<Schools />} />
               <Route path="/promotion" element={<Promotion />} />

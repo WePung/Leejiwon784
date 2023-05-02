@@ -8,12 +8,14 @@ const cors = require('cors')
 // 라우팅
 const home = require("./routes/home")
 
-app.use(cors())
+app.use(cors({
+    origin:"http://localhost:3000",
+}))
 app.use(express.json()) // json parsing을 위해서
 app.use(express.urlencoded({extended:true})) // parsing을 위해서
 
 // 회원정보
-let id = 1;
+let id = 3;
 const userInfo = [{
     id : 1,
     userName:"admin",
@@ -38,17 +40,39 @@ app.get('/api/userInfo', (req, res)=>{
     res.json(userInfo);
 });
 
-app.post('/api/userInfo', (req, res)=>{
-    const {userId,userName, password, email, gender} = req.body;
+// 회원가입 포스트
+app.post('/api/userInfo/signUp', (req, res)=>{
+    const {userId,userName, password, email, gender, age} = req.body;
     console.log("req.body = "+ req.body);
+    if(!userId || !userName || !password || !email || !gender || !age){
+        return res.send("fali")
+    }else{
     userInfo.push({
         id : id++,
         userId,
         userName,
         password,
         email,
-        gender
+        gender,
+        age
     });
+    return res.send('success');
+}
+});
+
+// 로그인 포스트
+app.post('/api/userInfo/login', (req, res)=>{
+    const {userId,userName, password, email, gender, age} = req.body;
+    console.log("req.body = "+ req.body);
+
+    function findUserId(element){
+        if(element.userId === req.body){
+            return true
+        }
+    }
+
+    const id = arr.find(findUserId)
+    res.json(id);
     return res.send('success');
 });
 

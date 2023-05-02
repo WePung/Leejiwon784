@@ -1,14 +1,52 @@
 import React, { useContext, useEffect, useState } from 'react';
-
+import axios from 'axios';
 
 import Header from '../../components/Header/Header';
 import style from './Login.module.css'
+import {logIn} from "../../reducer/userSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
-
-const Login = ({loginFunc, isLogin}) => {
+const Login = () => {
 
     const [id, setId] = useState("");
     const [pw, setPw] = useState("");
+
+    const dispatch = useDispatch();
+
+    const navigator = useNavigate();
+
+    const onIdChange = (e) =>{
+        setId(e.target.value);
+    }
+    
+    const onPwChange = (e) =>{
+        setPw(e.target.value);
+    }
+
+    async function loginFunc(e){
+        e.preventDefault();
+        if(!id){
+          alert("ID를 확인해주세요");
+        }else if(!pw){
+          alert("PW를 확인해주세요");
+        }else{
+          const res = await axios.get('http://localhost:4000/api/userInfo')
+          const resData = res.data;
+          
+          resData.map((it)=>{
+            if(it.userId === id){
+              if(it.password === pw){
+                var action = {type:'LOGIN', data:{userId:id, userPw:pw, id:it.id, userName:it.userName}};
+                console.log(res)
+                console.log(resData)
+                dispatch(logIn());
+                // navigator("/");
+              }
+            }
+          })
+        }
+      }
 
     const url = 'http://localhost:4000/api/userInfo';
 
@@ -29,11 +67,13 @@ const Login = ({loginFunc, isLogin}) => {
                             type='text'
                             name = 'userId'
                             id = 'id'
+                            onChange={onIdChange}
                         />
                         <input
                             type='password'
                             name = 'userPassword'
                             id = 'pw'
+                            onChange={onPwChange}
                         />
                         <div className={style.loginBtn}>
                         <input
