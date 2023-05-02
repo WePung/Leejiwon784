@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import counter from "./counter";
+import loginSclice from "./loginSlice";
 
 const rootReducer = combineReducers({
-  counter
+  loginSclice
 });
 
 export default rootReducer;

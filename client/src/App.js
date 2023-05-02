@@ -4,6 +4,7 @@ import './App.css';
 import Home from "./pages/Home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { legacy_createStore as createStore} from 'redux';
+import {logIn} from "./reducer/loginSlice";
 
 import Login from "./pages/Login/Login";
 import MyProfile from "./pages/MyProfile.js/MyProfile";
@@ -17,56 +18,7 @@ import Review from "./components/Review/Review";
 import Traffic from "./components/Traffic/Traffic";
 import Education from "./components/Education/Education";
 import QnA from "./components/QnA/QnA";
-
-// const initState = {
-//   name: "",
-//   id: "",
-//   isLoading: false, // optional
-//   isLogin: null,
-//  };
-//  const signUpState = {
-//   id:null,
-//   userName:"",
-//   userId:"",
-//   password:"",
-//   email:"",
-//   gender:"",
-//   age:null
-//  }
-
-const reducer = (state, action) => {  
-  var newState = {};
-
-  switch(action.type){
-    // 로그인
-      case 'LOGIN' : {
-        console.log(`reducer로 받은 아이디는 ${action.userId}이고 비밀번호는 ${action.userPw} 고유 아이디번호는${action.id} 이름은 ${action.userName}`)
-        newState = Object.assign({},state, {name:action.userName, id:action.id, isLogin:true})
-        console.log(newState)
-        break;
-      }
-
-      // 로그아웃
-
-      case 'LOGOUT':{
-
-      }
-
-      // 회원가입
-      case 'SIGNUP' : {
-        console.log("회원가입창")
-        // {id:action.id, userName:action.userName, userId:action.userId, password:action.userPw, email:action.email, gender:action.gender, age:action.age}
-        newState = Object.assign({},state, {...action.data})
-        console.log(newState)
-        break;
-      }
-      default:
-        return newState
-    }
-    return newState
-  };
-
-  var store = createStore(reducer);
+import { useDispatch, useSelector } from "react-redux";
 
 export const UserDataContext = React.createContext(); //User 데이터 context
 export const SchoolInfoContext = React.createContext(); //School 데이터 context
@@ -78,8 +30,10 @@ function App() {
   //새로운 아이디 고유 번호(임시)
   var nId = 3;
   // 로그인시 필요
-  const [isLogin, setIsLogin] = useState(false);
-  // const dispatch = useDispatch();
+
+  const dispatch = useDispatch();
+
+  const {isLogin} = useSelector(state=> state.login)
 
   const fetchUserData = async() => {
     const res = await axios.get('http://localhost:4000/api/userInfo')
@@ -106,9 +60,10 @@ function App() {
       resData.map((it)=>{
         if(it.userId === _id){
           if(it.password === _pw){
-            var action = {type:'LOGIN', userId:_id, userPw:_pw, id:it.id, userName:it.userName};
-            setIsLogin(true);
-            store.dispatch(action);
+            // var action = {type:'LOGIN', userId:_id, userPw:_pw, id:it.id, userName:it.userName};
+            // setIsLogin(true);
+            // store.dispatch(action);
+            dispatch(logIn());
           }
         }
       })
@@ -128,9 +83,9 @@ function App() {
     if(!_id ||  !_password || !_passwordCheack || !_name || !_email || !_gender || !_age){
       alert("내용을 기입해주세요");
     }else{
-      const action = {type:'SIGNUP', data:{id:nId, userName:_name, userId:_id,userPw:_password, email:_email, gender:_gender, age:_age}};
-      store.dispatch(action);
-      nId++;
+      // const action = {type:'SIGNUP', data:{id:nId, userName:_name, userId:_id,userPw:_password, email:_email, gender:_gender, age:_age}};
+      // store.dispatch(action);
+      // nId++;
     }
   }
 
