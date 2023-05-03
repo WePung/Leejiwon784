@@ -82,7 +82,6 @@ app.post('/api/userInfo/login', (req, res)=>{
         }else{
             return res.send("password invail")
         }
-    
 });
 
 // 학교 정보

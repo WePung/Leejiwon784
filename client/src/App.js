@@ -23,15 +23,9 @@ export const SchoolInfoContext = React.createContext(); //School 데이터 conte
 
 function App() {
   // 데이터 값
-  const [userInfo, setuserInfo] = useState([]);
   const [schoolInfo ,setSchoolInfo] = useState([]);
 
   const {me} = useSelector((state)=>state.userSlice);
-
-  const fetchUserData = async() => {
-    const res = await axios.get('http://localhost:4000/api/userInfo')
-    setuserInfo(res.data);
-  }
 
   const fetchSchooleInfo = async() => {
     const res = await axios.get('http://localhost:4000/api/schoolInfo')
@@ -43,7 +37,6 @@ function App() {
   }
  
   useEffect(()=>{
-    fetchUserData();
     fetchSchooleInfo();
     console.log(me);
   }, [])
