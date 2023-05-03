@@ -23,6 +23,6 @@ export function logIn(dataToLogin){
 export function logOut(){
     return{
         type: LOGOUT,
-        
+        payload: null
     }
 }

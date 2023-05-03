@@ -3,7 +3,7 @@ import axios from "axios";
 import './App.css';
 import Home from "./pages/Home/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { legacy_createStore as createStore} from 'redux';
+import { useSelector } from "react-redux";
 
 import Login from "./pages/Login/Login";
 import MyProfile from "./pages/MyProfile.js/MyProfile";
@@ -18,25 +18,15 @@ import Traffic from "./components/Traffic/Traffic";
 import Education from "./components/Education/Education";
 import QnA from "./components/QnA/QnA";
 
-
 export const UserDataContext = React.createContext(); //User 데이터 context
 export const SchoolInfoContext = React.createContext(); //School 데이터 context
-export const StoreContext = React.createContext(); // store기초 값
 
 function App() {
   // 데이터 값
-  const [userInfo, setuserInfo] = useState([{id: null,
-    userId: null,
-    password: null,
-    userName: null,
-    email: null,
-    gender: null,
-    age : null}]);
+  const [userInfo, setuserInfo] = useState([]);
   const [schoolInfo ,setSchoolInfo] = useState([]);
-  //새로운 아이디 고유 번호(임시)
-  var nId = 3;
 
-  const store = useContext(StoreContext);
+  const {me} = useSelector((state)=>state.userSlice);
 
   const fetchUserData = async() => {
     const res = await axios.get('http://localhost:4000/api/userInfo')
@@ -55,6 +45,7 @@ function App() {
   useEffect(()=>{
     fetchUserData();
     fetchSchooleInfo();
+    console.log(me);
   }, [])
 
   return (

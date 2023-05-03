@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 import style from './Login.module.css'
 import { logIn } from '../../actions/userAction';
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -48,7 +48,7 @@ const Login = () => {
     return (
         <div className='loginPage'>
             <Header 
-                leftChild={<a href='/'>로고</a>}
+                leftChild={<Link to='/'>로고</Link>}
             />
             <div className={style.inputwrapper}>
                 <div className={style.inputForm}>
@@ -80,8 +80,8 @@ const Login = () => {
                 <div className={style.inputBtn}>
                     {}
                         <ul>
-                            <li><a href='/signup'>회원가입</a></li>
-                            <li><a href='#'>아이디/비밀번호 찾기</a></li>
+                            <li><Link to ='/signup'>회원가입</Link></li>
+                            <li><Link to ='#'>아이디/비밀번호 찾기</Link></li>
                         </ul>
                     </div>
             </div>

@@ -1,38 +1,30 @@
 import { SIGNUPUSER, LOGIN, LOGOUT } from "../actions/types";
+import {produce} from "immer";
 
 const initState = {
-  id: null,
-  userId: null,
-  password: null,
-  userName: null,
-  email: null,
-  gender: null,
-  age : null
+  me:null,
 }
 
 const userSlice = (state = initState, action) => {
+  produce(state, draft => {
   switch (action.type){
     case LOGIN:
-      console.log(state)
-      return{
-        ...state,
-        state: action.payload,
-      }
-      
-    case LOGOUT:
-      return{
-        state
-      };
+      draft.me = action.payload;
+      break;
 
     case SIGNUPUSER:
-      return{
-        ...state,
-        loginSuccess: action.payload
-      };
+      draft.me = action.payload;
+      break;
+
+    case LOGOUT:
+      draft.me = action.payload;
+      break;
 
     default:
       return state;
-  }
+    }
+  })
+  return state;
 }
 
 export default userSlice;
