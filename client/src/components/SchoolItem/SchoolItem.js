@@ -1,8 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import TagList from '../Tag/TagList/TagList';
 
 
-const SchoolItem = ({filterValue, schoolUniqueId, schoolName, schoolDepartment}) => {
+const SchoolItem = ({filterValue, schoolName, schoolDepartment}) => {
     const navigate =useNavigate();
     const onGoDetail = () => {
         alert("안녕")
@@ -18,6 +19,7 @@ const SchoolItem = ({filterValue, schoolUniqueId, schoolName, schoolDepartment})
                 <div>
                     {schoolName}
                     {schoolDepartment}
+                     <TagList filterValue={filterValue}/>
                 </div>
                 )
         }
