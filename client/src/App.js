@@ -23,6 +23,7 @@ export const SchoolInfoContext = React.createContext(); //School 데이터 conte
 
 function App() {
   // 데이터 값
+  const [userInfo, setUserInfo] = useState([]);
   const [schoolInfo ,setSchoolInfo] = useState([]);
 
   const {me} = useSelector((state)=>state.userSlice);
